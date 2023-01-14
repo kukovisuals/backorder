@@ -46,7 +46,7 @@ async function saveObjectFetchData(arr, folder){
     product.push(await fetchData(el))
   }
   const dia = Date.now()
-  saveObjectToJSONFile(product, `${folder}/pdp-${dia}`)
+  saveObjectToJSONFile(product, `${folder}/pdp-${dia}.json`)
   // console.log(product, dia)
   // return product
 }
