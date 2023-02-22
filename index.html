@@ -37,8 +37,8 @@
     function draw(pdpData){
 
       // set the dimensions and margins of the graph
-      var margin = {top: 30, right: 30, bottom: 30, left: 100},
-        width = 1300 - margin.left - margin.right,
+      var margin = {top: 30, right: 30, bottom: 30, left: 150},
+        width = 1400 - margin.left - margin.right,
         height = 2000 - margin.top - margin.bottom;
       
       // append the svg object to the body of the page
@@ -51,7 +51,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
       
       let xArr = []
-      pdpData.map(data => xArr.push(data[0].pdp))
+      pdpData.map(data => xArr.push(data[0].name))
       // console.log(xArr)
       let yArr = []
       for(const el of pdpData){
@@ -67,6 +67,8 @@
       // Labels of row and columns
       var myGroups = yArr
       var myVars = xArr
+
+      console.log(myVars)
       
       // Build X scales and axis:
       var x = d3.scaleBand()
@@ -112,12 +114,14 @@
         .style("opacity", 1)
     }
     var mousemove = function(d) {
-      console.log(d)
-      const pdpId = d.target.__data__.pdp
+      // console.log(d)
+      const pdpId = d.target.__data__.name
+      const sizeId = d.target.__data__.id
+      const sku = d.target.__data__.sku
       const title = d.target.__data__.title
       const inventory = d.target.__data__.inventory
       Tooltip
-        .html(`Id: ${pdpId} <br>Size: ${title} <br>Inventory: ${inventory} `)
+        .html(`Id: ${pdpId} <br>sku: ${sku} <br>sku: ${sizeId} <br>Size: ${title} <br>Inventory: ${inventory} `)
         .style("left", (d.pageX + 70) + "px")
         .style("top", d.pageY + "px")
     }
@@ -137,7 +141,7 @@
               .append("rect")
               .attr("id", (d,i) => "circleBasicTooltip-"+i)
               .attr("x", function(d) { return x(d.title) })
-              .attr("y", function(d) { return y(d.pdp) })
+              .attr("y", function(d) { return y(d.name) })
               .attr("width", x.bandwidth() )
               .attr("height", y.bandwidth() )
               .style("fill", function(d) { 
@@ -155,6 +159,21 @@
         }
     }
     
+
+    /*
+        bralettes
+
+
+        let link = []
+    const getHref = document.querySelectorAll('.proFeaturedImage')
+    for(let el of getHref){
+        const href = el.getAttribute('href')
+        link.push(href)
+    }    
+
+    console.log(JSON.stringify(link))
+    */
+
     
     </script>
 </html>
