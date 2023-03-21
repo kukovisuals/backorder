@@ -172,6 +172,17 @@
     }    
 
     console.log(JSON.stringify(link))
+
+
+    
+    let link = []
+    const getHref = document.querySelectorAll('.item.ebyProdTile.epcWrapper')
+    for(let el of getHref){
+        const href = el.getAttribute('data-prodsku')
+        link.push(href)
+    }    
+
+    console.log(JSON.stringify(link))
     */
 
     
